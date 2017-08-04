@@ -24,11 +24,10 @@ class Node:
 
 class SkipList:
 
-    MAX_HEIGHT = 10
-
-    def __init__(self):
-        self.head = Node(-sys.maxint - 1, SkipList.MAX_HEIGHT)
-        self.tail = Node(sys.maxint, SkipList.MAX_HEIGHT)
+    def __init__(self, max_level):
+        self.max_level = max_level
+        self.head = Node(-sys.maxint - 1, max_level)
+        self.tail = Node(sys.maxint, max_level)
 
         # connect head and tail
         for i in range(self.head.level, -1, -1):
@@ -61,15 +60,17 @@ class SkipList:
             # not in the list
             if current_max_level == -1:
                 return [ p for p in path if p != None]
-            
 
-    def add(self, value):
-        h = min(get_level(), SkipList.MAX_HEIGHT)
-        newNode = Node(value, h)
+    # accepting pre-defined levels enables testing.
+    def add(self, value, level = None):
+        if not level:
+            level = min(get_level(), self.max_level)
+        
+        newNode = Node(value, level)
         path = self.search(value)
 
         # sets forwards
-        for i in range(h, -1, -1):
+        for i in range(level, -1, -1):
             prev = path[i][0]
             nextt = path[i][1]
             prev.forward[i] = newNode
@@ -113,25 +114,3 @@ class SkipList:
             all_levels.append(l)
         
         return all_levels
-
-
-sl = SkipList()
-l = [3,1,90,-2,3,44]
-
-for i in l:
-    sl.add(i)
-
-rep = sl.str_rep()
-
-for i in rep:
-    print i
-
-sl.remove(-2)
-
-rep = sl.str_rep()
-
-for i in rep:
-    print i
-
-
-
