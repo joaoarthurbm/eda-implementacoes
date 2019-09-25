@@ -197,7 +197,7 @@ public class TabelaHashEnderecamentoAberto {
 	 * passada como parâmetro. 
 	 */
 	public Aluno remove(int chave) {
-        int sondagem = 0;
+		int sondagem = 0;
 	    int hash;
 	    while (sondagem < tabela.length) {
 	    	
