@@ -5,8 +5,8 @@ public class Aluno {
 	private Integer matricula;
 	private String nome;
 	
-	public Aluno(int m , String nome) {
-		this.matricula = m;
+	public Aluno(Integer matricula, String nome) {
+		this.matricula = matricula;
 		this.nome = nome;
 	}
 	
