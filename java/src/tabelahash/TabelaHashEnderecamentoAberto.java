@@ -219,6 +219,10 @@ public class TabelaHashEnderecamentoAberto {
 	    return null;
 	}
 	
+	/**
+	 * Retorna a quantidade de elementos presentes na tabela. 
+	 * @return o número de elementos armazenados na tabela.
+	 */
 	public int size() {
 		return this.size;
 	}
