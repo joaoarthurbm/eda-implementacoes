@@ -32,7 +32,7 @@ public class TabelaHashEnderecamentoAberto {
 
     // flag para lidar com posições ocupadas anteriormente.
     // não são permitidos valores de chaves negativas, por isso a escolha.
-    private static final Aluno DELETED = new Aluno(Integer.MIN_VALUE, "DELETED");
+    private static final Aluno APAGADO = new Aluno(Integer.MIN_VALUE, "APAGADO");
 
     /**
      * Cria uma nova tabela com capacidade inicial 20 e fator de carga 0.75.
@@ -176,7 +176,7 @@ public class TabelaHashEnderecamentoAberto {
             Aluno tmpAluno = tabela[hash];
             if (tmpAluno == null || 
                     tmpAluno.getMatricula().equals(chave) ||
-                    tmpAluno.equals(DELETED)) {
+                    tmpAluno.equals(APAGADO)) {
                 tabela[hash] = valor;
                 this.chaves.add(chave);
                 this.valores.add(valor);
@@ -191,7 +191,10 @@ public class TabelaHashEnderecamentoAberto {
     }
 
     /**
-     * Remove o aluno cuja matrícula é igual a chave passada como parâmetro.
+     * Remove o aluno cuja matrícula é igual a chave passada como parâmetro. Importante destacar
+     * que a posição em que o elemento está não é atribuida ao valor null, mas sim a um 
+     * objeto flag APAGADO. Esse recurso é utilizado para pemitir que a sondagem consiga
+     * diferenciar posições livres e decidir se deve seguir ou não.
      * @param chave A matrícula do aluno a ser removido.
      * @return O aluno a ser removido. null caso não haja aluno com a matrícula
      * passada como parâmetro. 
@@ -200,12 +203,11 @@ public class TabelaHashEnderecamentoAberto {
         int sondagem = 0;
         int hash;
         while (sondagem < tabela.length) {
-
-            hash = (hash(chave) + sondagem) % tabela.length;
+        		hash = (hash(chave) + sondagem) % tabela.length;
 
             if (tabela[hash] != null && tabela[hash].getMatricula().equals(chave)) {
                 Aluno aluno = tabela[hash];  
-                tabela[hash] = DELETED;
+                tabela[hash] = APAGADO;
                 this.chaves.remove(chave);
                 this.valores.remove(aluno);
                 this.size -= 1;
