@@ -22,8 +22,8 @@ public class TabelaHashEnderecamentoAberto {
 	private int size;
 	private double fatorDeCarga;
 	
-	private static final int CAPACIDADE_DEFAULT = 20;
-	private static final double FATOR_DE_CARGA_DEFAULT = 0.75;
+	public static final int CAPACIDADE_DEFAULT = 20;
+	public static final double FATOR_DE_CARGA_DEFAULT = 0.75;
 	
 	public TabelaHashEnderecamentoAberto() {
 		this(CAPACIDADE_DEFAULT, FATOR_DE_CARGA_DEFAULT);

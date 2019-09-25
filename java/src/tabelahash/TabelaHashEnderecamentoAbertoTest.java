@@ -8,7 +8,8 @@ public class TabelaHashEnderecamentoAbertoTest {
 
 	@Test
 	public void test() {
-		TabelaHashEnderecamentoAberto tabela = new TabelaHashEnderecamentoAberto(5);
+		TabelaHashEnderecamentoAberto tabela = new TabelaHashEnderecamentoAberto(5, 
+				TabelaHashEnderecamentoAberto.FATOR_DE_CARGA_DEFAULT);
 		
 		tabela.put(0, new Aluno(0, "a"));
 		tabela.put(1, new Aluno(1, "b"));
@@ -29,7 +30,8 @@ public class TabelaHashEnderecamentoAbertoTest {
 		} catch (TabelaCheiaException e) {}
 		
 		// testando sondagem
-		tabela = new TabelaHashEnderecamentoAberto(5);
+		tabela = new TabelaHashEnderecamentoAberto(5, 
+				TabelaHashEnderecamentoAberto.FATOR_DE_CARGA_DEFAULT);
 		tabela.put(0, new Aluno(0, "a"));
 		tabela.put(5, new Aluno(5, "b"));
 		tabela.put(10, new Aluno(10, "c"));
