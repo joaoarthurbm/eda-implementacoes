@@ -1,6 +1,5 @@
 package arraylist;
 
-import java.util.Arrays;
 
 public class ArrayList {
 
