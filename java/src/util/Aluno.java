@@ -1,4 +1,4 @@
-package tabelahash;
+package util;
 
 public class Aluno {
 

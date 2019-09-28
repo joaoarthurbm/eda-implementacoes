@@ -3,6 +3,8 @@ package tabelahash;
 import java.util.HashSet;
 import java.util.Set;
 
+import util.Aluno;
+
 /**
  * Esta classe representa a implementação de uma Tabela Hash que usa endereçamento aberto (sondagem linear)
  * para resolver colisões.

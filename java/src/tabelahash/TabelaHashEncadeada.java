@@ -2,6 +2,8 @@ package tabelahash;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import util.Aluno;
+
 /**
  * Esta classe representa a implementação de uma Tabela Hash que usa endereçamento fechado (encadeamento)
  * para resolver colisões.
