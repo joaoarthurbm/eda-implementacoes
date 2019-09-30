@@ -102,5 +102,5 @@ public class ArrayListTest {
 		assertEquals(lista.get(2), new Aluno(90, "Júlia"));
 
 	}
-
+	
 }

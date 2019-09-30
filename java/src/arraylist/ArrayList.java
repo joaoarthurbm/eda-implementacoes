@@ -82,14 +82,40 @@ public class ArrayList {
 		return this.lista[index];
 	}
 	
-	public boolean remove(int index) {
+	public int indexOf(Aluno aluno) {
+		for (int i = 0; i < size; i++)
+			if (this.lista[i].equals(aluno))
+				return i;
+		return -1;
+	}
+	
+	public boolean contains(Aluno aluno) {
+		return this.indexOf(aluno) != -1;
+	}
+	
+	
+	public Aluno remove(int index) {
 		if (index < 0 || index >= this.size)
-			return false;
+			return null;
+		
+		Aluno aluno = this.get(index);
 		
 		shiftParaEsquerda(index);
 		this.size -= 1;
-		return true;
+		return aluno;
+	}
+	
+	public boolean remove(Aluno aluno) {
+		if (aluno == null) return false;
 		
+		for (int i = 0; i < size; i++) {
+			if (this.lista[i].equals(aluno)) {
+				this.remove(i);
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	private void shiftParaEsquerda(int index) {
@@ -103,7 +129,7 @@ public class ArrayList {
 		
 		StringBuffer st = new StringBuffer("[");
 		for (int i = 0; i < this.size; i++) {
-			st.append(this.lista[i] + ",");
+			st.append(this.lista[i].getMatricula() + ",");
 		}
 		
 		st.replace(st.length() - 1, st.length(), "]");
