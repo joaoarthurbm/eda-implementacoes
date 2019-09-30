@@ -40,11 +40,11 @@ public class ArrayListTest {
 		} catch (IndexOutOfBoundsException e){}
 		
 		// removendo posição inválida
-		assertFalse(lista.remove(-1));
-		assertFalse(lista.remove(5));
+		lista.remove(-1);
+		lista.remove(5);
 		
 		//removendo o último elemento
-		assertTrue(lista.remove(lista.size() - 1));
+		lista.remove(lista.size() - 1);
 		assertEquals(4, lista.size());
 		assertEquals(3, (int)lista.get(0).getMatricula());
 		assertEquals(13, (int)lista.get(1).getMatricula());
@@ -53,14 +53,14 @@ public class ArrayListTest {
 		
 		
 		// removendo o primeiro elemento
-		assertTrue(lista.remove(0));
+		lista.remove(0);
 		assertEquals(3, lista.size());
 		assertEquals(13, (int)lista.get(0).getMatricula());
 		assertEquals(9, (int)lista.get(1).getMatricula());
 		assertEquals(7, (int)lista.get(2).getMatricula());
 		
 		// removendo um elemento central
-		assertTrue(lista.remove(1));
+		lista.remove(1);
 		assertEquals(2, lista.size());
 		assertEquals(13, (int)lista.get(0).getMatricula());
 		assertEquals(7, (int)lista.get(1).getMatricula());
