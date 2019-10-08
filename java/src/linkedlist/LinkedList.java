@@ -95,7 +95,7 @@ public class LinkedList {
 		size -= 1;
 		return aluno;
 	}
-	
+
 	public void add(int index, Aluno aluno) {
 		if (index < 0 || index >= size)
 			throw new IndexOutOfBoundsException();
@@ -116,6 +116,8 @@ public class LinkedList {
 			
 			newNode.next = aux.next;
 			aux.next = newNode;
+			newNode.prev = aux;
+			newNode.next.prev = newNode;
 			
 			size += 1;
 		}
