@@ -161,28 +161,28 @@ public class LinkedListTest {
 		
 		// índices inválidos.
 		try {
-			lista.add(1, new Aluno(1, "Marielle"));
+			lista.addR(1, new Aluno(1, "Marielle"));
 			fail("esta linha não pode ser executada.");
 		} catch (IndexOutOfBoundsException e){}
 		
 		try {
-			lista.add(0, new Aluno(1, "Marielle"));
+			lista.addR(0, new Aluno(1, "Marielle"));
 			fail("esta linha não pode ser executada.");
 		} catch (IndexOutOfBoundsException e){}
 		
 		try {
-			lista.add(-1, new Aluno(1, "Mariella"));
+			lista.addR(-1, new Aluno(1, "Mariella"));
 			fail("esta linha não pode ser executada.");
 		} catch (IndexOutOfBoundsException e){}
 		
 		
 		// em head
 		lista.addLast(new Aluno(1, "Marielle"));
-		lista.add(0, new Aluno(2, "Amarildo"));
+		lista.addR(0, new Aluno(2, "Amarildo"));
 		assertEquals(2, (int)lista.getFirst().getMatricula());
 		assertEquals(1, (int)lista.getLast().getMatricula());
 		assertEquals(2, (int)lista.get(0).getMatricula());
-		lista.add(0, new Aluno(3, "Renan"));
+		lista.addR(0, new Aluno(3, "Renan"));
 		assertEquals(3, (int)lista.getFirst().getMatricula());
 		assertEquals(1, (int)lista.getLast().getMatricula());
 		assertEquals(3, (int)lista.get(0).getMatricula());
@@ -190,7 +190,7 @@ public class LinkedListTest {
 		assertEquals(1, (int)lista.get(2).getMatricula());
 		
 		// no meio
-		lista.add(1, new Aluno(4, "Bethania"));
+		lista.addR(1, new Aluno(4, "Bethania"));
 		assertEquals(3, (int)lista.get(0).getMatricula());
 		assertEquals(4, (int)lista.get(1).getMatricula());
 		assertEquals(2, (int)lista.get(2).getMatricula());
@@ -199,7 +199,7 @@ public class LinkedListTest {
 		assertEquals(1, (int)lista.getLast().getMatricula());
 		
 		// em tail
-		lista.add(3, new Aluno(5, "Caetano"));
+		lista.addR(3, new Aluno(5, "Caetano"));
 		assertEquals(3, (int)lista.getFirst().getMatricula());
 		assertEquals(5, (int)lista.getLast().getMatricula());
 		

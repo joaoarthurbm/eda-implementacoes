@@ -95,6 +95,33 @@ public class LinkedList {
 		size -= 1;
 		return aluno;
 	}
+	
+	
+	public void addR(int index, Aluno aluno) {
+		if (index < 0 || index >= size)
+			throw new IndexOutOfBoundsException();
+		
+		if (index == 0)
+			this.addFirst(aluno);
+		else if (index == size - 1)
+			this.addLast(aluno);
+		else
+			addR(this.head, index, aluno, 0);
+	}
+	
+	private void addR(Node node, int index, Aluno aluno, int i) {
+			// hora de adicionar.
+			if (i == (index - 1)) {
+				Node newNode = new Node(aluno);
+				newNode.next = node.next;
+				node.next = newNode;
+				newNode.next.prev = newNode;
+				newNode.prev = node;
+				this.size += 1;
+			} else {
+				addR(node.next, index, aluno, i+1);
+			}
+	}
 
 	public void add(int index, Aluno aluno) {
 		if (index < 0 || index >= size)
@@ -116,8 +143,6 @@ public class LinkedList {
 			
 			newNode.next = aux.next;
 			aux.next = newNode;
-			newNode.prev = aux;
-			newNode.next.prev = newNode;
 			
 			size += 1;
 		}
@@ -187,6 +212,17 @@ public class LinkedList {
 		return false;
 	}
 	
+	public String toString() {
+		Node aux = this.head;
+		String out = "";
+		while (aux != null) {
+			out += aux.aluno.getNome() + " ";
+			aux = aux.next;
+		}
+		return out;
+			
+	}
+	
 	public boolean contains(Aluno aluno) {
 		return indexOf(aluno) != -1;
 	}
@@ -194,7 +230,7 @@ public class LinkedList {
 	public int size() {
 		return this.size;
 	}
-	
+
 }
 
 class Node {
