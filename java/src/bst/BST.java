@@ -92,13 +92,11 @@ public class BST {
 	
 	/**
 	 * Retorna o nó cujo valor é predecessor do valor passado como parâmetro. 
-	 * @param valor O valor para o qual deseja-se identificar o predecessor.
+	 * @param valor O nó para o qual deseja-se identificar o predecessor.
 	 * @return O nó contendo o predecessor do valor passado como parâmetro. O método retorna null caso não haja 
 	 * predecessor.
 	 */
-	public Node predecessor(int valor) {
-		
-		Node node = search(valor);
+	public Node predecessor(Node node) {
 		if (node == null) return null;
 		
 		if (node.left != null)
