@@ -1,4 +1,8 @@
 package bst;
+
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class BST {
 
 	private Node root;
@@ -230,7 +234,7 @@ public class BST {
 	 */
 	private void preOrder(Node node) {
 		if (node != null) {
-			System.out.print(node.value + " ");
+			System.out.println(node.value);
 			preOrder(node.left);
 			preOrder(node.right);
 		}
@@ -249,7 +253,7 @@ public class BST {
 	private void inOrder(Node node) {
 		if (node != null) {
 			inOrder(node.left);
-			System.out.print(node.value + " ");
+			System.out.println(node.value);
 			inOrder(node.right);
 		}
 		
@@ -269,11 +273,28 @@ public class BST {
 		if (node != null) {
 			posOrder(node.left);
 			posOrder(node.right);
-			System.out.print(node.value + " ");
+			System.out.println(node.value);
 		}
 		
 	}
 	
+	public void printBFS() {
+		Deque<Node> queue = new LinkedList<Node>();
+		
+		if (isEmpty()) {
+			queue.addLast(this.root);
+			while (!queue.isEmpty()) {
+				Node current = queue.removeFirst();
+				
+				System.out.println(current);
+				
+				if(current.left != null) 
+					queue.addLast(current.left);
+				if(current.right != null) 
+					queue.addLast(current.right);	
+			}
+		}
+	}
 }
 
 
