@@ -281,7 +281,7 @@ public class BST {
 	public void printBFS() {
 		Deque<Node> queue = new LinkedList<Node>();
 		
-		if (isEmpty()) {
+		if (!isEmpty()) {
 			queue.addLast(this.root);
 			while (!queue.isEmpty()) {
 				Node current = queue.removeFirst();
