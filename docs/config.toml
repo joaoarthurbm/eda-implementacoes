@@ -1,4 +1,0 @@
-publishDir = "docs"
-baseURL = "https://joaoarthurbm.github.io/eda-ufcg/docs/themes/kiera/public/"
-languageCode = "en-us"
-title = "My New Hugo Site"
