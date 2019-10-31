@@ -7,7 +7,7 @@ public class ArrayList {
 
 	private Aluno[] lista;
 	public static final int CAPACIDADE_DEFAULT = 20;
-	private int size;
+	private int tamanho;
 	
 	public ArrayList() {
 		this(CAPACIDADE_DEFAULT);
@@ -15,38 +15,38 @@ public class ArrayList {
 	
 	public ArrayList(int capacidade) {
 		this.lista = new Aluno[capacidade];
-		this.size = 0;
+		this.tamanho = 0;
 	}
 	
 	public boolean isEmpty() {
-		return this.size == 0;
+		return this.tamanho == 0;
 	}
 	
 	public int size() {
-		return this.size;
+		return this.tamanho;
 	}
 	
 	public boolean add(Aluno aluno) {
-		assegureCapacidade(this.size + 1);
-		this.lista[size++] = aluno;
+		assegureCapacidade(this.tamanho + 1);
+		this.lista[tamanho++] = aluno;
 		return true;
 	}
 	
 	public void add(int index, Aluno aluno) {
-		if (index < 0 || index >= this.size)
+		if (index < 0 || index >= this.tamanho)
 			throw new IndexOutOfBoundsException();
 		
-		assegureCapacidade(this.size + 1);
+		assegureCapacidade(this.tamanho + 1);
 		
 		shiftParaDireita(index);
 		
 		this.lista[index] = aluno;
-		this.size += 1;
+		this.tamanho += 1;
 		
 	}
 	
 	public void set(int index, Aluno aluno) {
-		if (index < 0 || index >= this.size)
+		if (index < 0 || index >= this.tamanho)
 			throw new IndexOutOfBoundsException();
 		this.lista[index] = aluno;
 	}
@@ -71,19 +71,19 @@ public class ArrayList {
 			throw new IndexOutOfBoundsException("Não há espaço para "
 					+ "efetuar o shift à direita.");
 		
-		for (int i = this.size; i > index; i--) {
+		for (int i = this.tamanho; i > index; i--) {
 			this.lista[i] = this.lista[i-1];
 		}
 	}
 	
 	public Aluno get(int index) {
-		if (index < 0 || index >= this.size)
+		if (index < 0 || index >= this.tamanho)
 			throw new IndexOutOfBoundsException();
 		return this.lista[index];
 	}
 	
 	public int indexOf(Aluno aluno) {
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < tamanho; i++)
 			if (this.lista[i].equals(aluno))
 				return i;
 		return -1;
@@ -95,20 +95,20 @@ public class ArrayList {
 	
 	
 	public Aluno remove(int index) {
-		if (index < 0 || index >= this.size)
+		if (index < 0 || index >= this.tamanho)
 			return null;
 		
 		Aluno aluno = this.get(index);
 		
 		shiftParaEsquerda(index);
-		this.size -= 1;
+		this.tamanho -= 1;
 		return aluno;
 	}
 	
 	public boolean remove(Aluno aluno) {
 		if (aluno == null) return false;
 		
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < tamanho; i++) {
 			if (this.lista[i].equals(aluno)) {
 				this.remove(i);
 				return true;
@@ -119,7 +119,7 @@ public class ArrayList {
 	}
 
 	private void shiftParaEsquerda(int index) {
-		for (int i = index; i < this.size - 1; i++) {
+		for (int i = index; i < this.tamanho - 1; i++) {
 			this.lista[i] = this.lista[i+1];
 		}
 	}
@@ -128,7 +128,7 @@ public class ArrayList {
 		if (isEmpty()) return "[]";
 		
 		StringBuffer st = new StringBuffer("[");
-		for (int i = 0; i < this.size; i++) {
+		for (int i = 0; i < this.tamanho; i++) {
 			st.append(this.lista[i].getMatricula() + ",");
 		}
 		
