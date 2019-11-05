@@ -287,6 +287,22 @@ public class BST {
 		if (element < node.value) return recursiveSearch(node.left, element);
 		else return recursiveSearch(node.right, element);
 	}
+	
+	/**
+	 * Retorna a altura da árvore.
+	 */
+	public int height() {
+		return height(this.root);
+	}
+	
+	/**
+	 * Método para auxiliar a recursão. Retorna
+	 * a altura da árvore cuja raiz é passada como parâmetro.
+	 */
+	private int height(Node node) {
+		if(node == null) return -1;
+		else return 1 + Math.max(height(node.left), height(node.right));
+	}
 
 	/**
 	 * Percorre a árvore em pré-ordem.
