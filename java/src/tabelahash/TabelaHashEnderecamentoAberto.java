@@ -205,7 +205,7 @@ public class TabelaHashEnderecamentoAberto {
         int sondagem = 0;
         int hash;
         while (sondagem < tabela.length) {
-        		hash = (hash(chave) + sondagem) % tabela.length;
+                hash = (hash(chave) + sondagem) % tabela.length;
 
             if (tabela[hash] != null && tabela[hash].getMatricula().equals(chave)) {
                 Aluno aluno = tabela[hash];  
