@@ -1,7 +1,6 @@
 package heap;
 import java.util.Arrays;
 
-
 public class Heap {
 	
 	private int[] heap;
@@ -12,6 +11,16 @@ public class Heap {
 		this.tail = -1;
 	}
 	
+	public Heap(int[] heap) {
+		this.heap = heap;
+		this.buildHeap();
+	}
+	
+	private void buildHeap() {
+		for (int i = parent(this.tail); i >= 0; i--)
+			heapify(i);	
+	}
+
 	public boolean isEmpty() {
 		return this.tail == -1;
 	}
@@ -46,7 +55,6 @@ public class Heap {
 	}
 	
 	public int remove() {
-		
 		if (isEmpty()) throw new RuntimeException("Empty");
 		int element = this.heap[0];
 		this.heap[0] = this.heap[tail];
@@ -58,7 +66,6 @@ public class Heap {
 	}
 		
 	private void heapify(int index) {
-		
 	    if (isLeaf(index) || !isValidIndex(index)) 
             return;
 	    
@@ -71,7 +78,6 @@ public class Heap {
 	    		swap(index, index_max);
 	    		heapify(index_max);
 	    }
-
     } 
 	
 	private int max_index(int index, int left, int right) {
@@ -113,12 +119,13 @@ public class Heap {
 		
 		this.heap = novoHeap;
 	}
-
+	
 	public int size() {
 		return this.tail + 1;
 	}
+	
 	public String toString() {
 		return Arrays.toString(this.heap);
 	}
-	
+
 }
