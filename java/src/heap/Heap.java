@@ -9,7 +9,7 @@ public class Heap {
 	public Heap(int capacidade) {
 		this.heap = new int[capacidade];
 		this.tail = -1;
-	}
+    }
 	
 	public Heap(int[] heap) {
 		this.heap = heap;
