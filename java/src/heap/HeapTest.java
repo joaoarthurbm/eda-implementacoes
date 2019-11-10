@@ -7,8 +7,6 @@ import org.junit.Test;
 
 
 public class HeapTest {
-
-	
 	
 	@Test
 	public void testLeft() {
@@ -112,8 +110,6 @@ public class HeapTest {
 		assertEquals(30, heap.remove());
 		expected = new int[]{30, 30, 33, 30, 33, 33, 43, 30, 33, 38, 0, 0, 0, 0, 0};
 		assertEquals(Arrays.toString(expected), heap.toString());
-		
-		
 		
 	}
 
