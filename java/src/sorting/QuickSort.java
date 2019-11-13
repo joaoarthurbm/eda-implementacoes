@@ -3,13 +3,13 @@ public class QuickSort implements SortingAlgorithm {
 
 	public void quickSort(int[] v, int left, int right) {
 		if (left < right) {
-			int index_pivot = particiona(v, left, right);
+			int index_pivot = partition(v, left, right);
 			quickSort(v, left, index_pivot - 1);
 			quickSort(v, index_pivot + 1, right);	
 		}
 	}
 
-	private int particiona(int[] v, int left, int right) {
+	private int partition(int[] v, int left, int right) {
 		
 		int pivot = v[left];
 		int i = left;
