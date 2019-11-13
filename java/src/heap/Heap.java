@@ -13,6 +13,7 @@ public class Heap {
     
     public Heap(int[] heap) {
         this.heap = heap;
+        this.tail = this.heap.length - 1;
         this.buildHeap();
     }
     
