@@ -41,17 +41,16 @@ public class Heap {
     public void add(int n) {
         if (tail >= (heap.length - 1))
             resize();
-        else {
-            this.tail += 1;
-            this.heap[tail] = n;
-            
-            int i = tail;
-            while (i > 0 && this.heap[parent(i)] < this.heap[i]) {
-                int aux = this.heap[i];
-                this.heap[i] = this.heap[parent(i)];
-                this.heap[parent(i)] = aux;
-                i = parent(i);
-            }
+    
+        this.tail += 1;
+        this.heap[tail] = n;
+        
+        int i = tail;
+        while (i > 0 && this.heap[parent(i)] < this.heap[i]) {
+            int aux = this.heap[i];
+            this.heap[i] = this.heap[parent(i)];
+            this.heap[parent(i)] = aux;
+            i = parent(i);
         }
     }
     
