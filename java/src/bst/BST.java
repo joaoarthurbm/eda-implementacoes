@@ -164,13 +164,17 @@ public class BST {
         
         if (element < node.value) {
             if (node.left == null) {
-                node.left = new Node(element);
+                Node newNode = new Node(element);
+                node.left = newNode;
+                newNode.parent = node;
                 return;
             }
             recursiveAdd(node.left, element);
         } else {
             if (node.right == null) {
-                node.right = new Node(element);
+                Node newNode = new Node(element);
+                node.right = newNode;
+                newNode.parent = node;
                 return;
             }
             recursiveAdd(node.right, element);
