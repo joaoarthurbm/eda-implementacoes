@@ -6,15 +6,13 @@ public class MedianOfThreePivotStrategy implements PivotStrategy {
 
     @Override
     public int pickPivotIndex(int[] values, int left, int right) {
-        int first = values[left];
-        int mid = values[(left + right) / 2];
-        int last = values[right];
+        int mid = (left + right) / 2;
         
-        int[] sorted = {first, mid, last};
+        int[] sorted = {values[left], values[mid], values[right]};
         Arrays.sort(sorted);
         
         if (sorted[1] == values[left]) return left;
-        else if (sorted[1] == values[(left + right)/2]) return (left+right)/2;
+        else if (sorted[1] == values[mid]) return mid;
         else return right;
     }
 
