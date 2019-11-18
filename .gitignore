@@ -1,3 +1,7 @@
+.classpath
+.project
+.settings/
 java/.project
 java/bin/
 public
+/bin/
