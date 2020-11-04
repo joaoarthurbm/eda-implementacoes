@@ -12,7 +12,7 @@ import util.Aluno;
  * Naturalmente, por ser uma estrutura de propósito geral, uma tabela hash deve ser capaz de manipular objetos
  * de qualquer tipo.
  *  
- * @author https://github.com/joaoarthurbm/
+ * @author joaoarthurbm.github.io/eda
  * Computação @ UFCG
  */
 public class TabelaHashEncadeada {
