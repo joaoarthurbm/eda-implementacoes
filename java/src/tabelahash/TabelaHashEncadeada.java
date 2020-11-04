@@ -12,7 +12,8 @@ import util.Aluno;
  * Naturalmente, por ser uma estrutura de propósito geral, uma tabela hash deve ser capaz de manipular objetos
  * de qualquer tipo.
  *  
- * @author http://joaoarthurbm.github.io/eda
+ * @author João Arthur
+ * @see <a href="http://joaoarthurbm.github.io/eda">http://joaoarthurbm.github.io/eda</a>
  * Computação @ UFCG
  */
 public class TabelaHashEncadeada {
