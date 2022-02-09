@@ -28,23 +28,5 @@ import java.util.Scanner;
 		return b;
 	}
 	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String[] entrada = sc.nextLine().split(" ");
-		int[] a = new int[entrada.length];
-		for (int i = 0; i < a.length; i++)
-			a[i] = Integer.parseInt(entrada[i]);
-		
-        int d = Integer.parseInt(sc.nextLine());
-        
-        for (int i = 1; i <= d; i++) {
-        		a = counting(a, 9, i);
-        		System.out.println(Arrays.toString(a));
-        }
-        
-		
-		sc.close();
-	}
-	
 }
 
