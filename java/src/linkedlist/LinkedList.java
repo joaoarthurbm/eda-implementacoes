@@ -141,7 +141,9 @@ public class LinkedList {
             for (int i = 0; i < index - 1; i++)
                 aux = aux.next;
             
+            newNode.prev = aux;
             newNode.next = aux.next;
+            aux.next.prev = newNode;
             aux.next = newNode;
             
             size += 1;
