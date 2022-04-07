@@ -1,25 +1,8 @@
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.stream.Stream;
 
-class Main {
-    public static void main(String[] args) {
-        AVL avl = new AVL();
-        Scanner sc = new Scanner(System.in);
-        int[] arr = Stream.of(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        sc.close();
-
-        for (int num : arr) {
-            avl.add(num);
-        }
-
-        System.out.println(avl.bfs().toString().replace("[", "").replace("]", ""));
-    }
-}
-
-class AVL {
+public class AVL {
     private Node root;
     private int size;
 
