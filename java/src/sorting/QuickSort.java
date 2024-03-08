@@ -38,35 +38,34 @@ public class QuickSort implements SortingAlgorithm {
             return j;
     }
 
-	private int partition(int[] v, int left, int right) {
-		
-	    int indexPivot = this.pivotPicker.pickPivotIndex(v, left, right);
-	    
-	    // swap first and pivot
-	    int aux = v[left];
-	    v[left] = v[indexPivot];
-	    v[indexPivot] = aux;
+    private int partition(int[] v, int left, int right) {
+	
+        int indexPivot = this.pivotPicker.pickPivotIndex(v, left, right);
+    
+        // swap first and pivot
+        int aux = v[left];
+        v[left] = v[indexPivot];
+        v[indexPivot] = aux;
 	            
-		int pivot = v[left];
-		int i = left;
+	int pivot = v[left];
+	int i = left;
 		
-		for (int j = i + 1; j <= right; j++) {
-			if (v[j] <= pivot) {
-				i+=1;
-				aux = v[i];
-				v[i] = v[j];
-				v[j] = aux;
-				
-			}
-		}
-		
-		aux = v[left];
-		v[left] = v[i];
-		v[i] = aux;
-		
-		return i;
-		
+	for (int j = i + 1; j <= right; j++) {
+	    if (v[j] <= pivot) {
+		i+=1;
+		aux = v[i];
+		v[i] = v[j];
+		v[j] = aux;			
+	    }
 	}
+		
+	aux = v[left];
+	v[left] = v[i];
+	v[i] = aux;
+	
+	return i;
+		
+    }
 
     @Override
     public void sort(int[] v) {
