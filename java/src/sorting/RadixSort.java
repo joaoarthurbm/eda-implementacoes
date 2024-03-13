@@ -41,8 +41,6 @@ public class RadixSort {
     private static int getMax(int[] v) {
         // Considerando que não vamos receber número inteiros < 0
         int max = -1;
-       // 
-    
 
         for (int i = 0; i < v.length; i++) {
             if (v[i] > max)
