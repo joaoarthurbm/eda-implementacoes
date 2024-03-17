@@ -35,7 +35,7 @@ public class FIFOArray {
         // se já tiver cheio, precisamos andar com head para liberar o espaço;
         // e não acrescentamos em size porque não houve aumento de elementos.
         if (isFull())
-            this.head += 1 % this.tail;
+            this.head += 1 % this.fila.length;
         
         // incrementa tail e adiciona o novo elemento
         this.tail = (this.tail + 1) % this.fila.length;
