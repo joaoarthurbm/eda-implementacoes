@@ -1,8 +1,5 @@
 package linkedlist;
-
 import java.util.NoSuchElementException;
-
-import util.Aluno;
 
 public class LinkedList {
 
@@ -15,13 +12,13 @@ public class LinkedList {
         this.tail = null;
         this.size = 0;
     }
-    
+   
     public boolean isEmpty() {
-        return this.head == null && this.tail == null;
+        return this.head == null;
     }
-    
-    public void addFirst(Aluno aluno) {
-        Node newNode = new Node(aluno);
+
+    public void addFirst(int valor) {
+        Node newNode = new Node(valor);
         
         if (isEmpty()) {
             this.head = newNode;
@@ -34,9 +31,9 @@ public class LinkedList {
         
         size += 1;
     }
-    
-    public void addLast(Aluno aluno) {
-        Node newNode = new Node(aluno);
+
+    public void addLast(int valor) {
+        Node newNode = new Node(valor);
         
         if(isEmpty()) {
             this.head = newNode;
@@ -48,92 +45,19 @@ public class LinkedList {
         }
         this.size += 1;
     }
-    
-    public Aluno getFirst() {
-        if (isEmpty()) throw new NoSuchElementException();
-        return this.head.aluno;
-    }
-    
-    public Aluno getLast() {
-        if (isEmpty()) throw new NoSuchElementException();
-        return this.tail.aluno;
-    }
-    
-    
-    public Aluno removeFirst() {
-        
-        if (isEmpty()) return null;
-        
-        Aluno aluno = this.head.aluno;
-        
-        if (this.head.next == null) {
-            this.head = null;
-            this.tail = null;
-        } else {
-            this.head = this.head.next;
-            this.head.prev = null;
-        }
-        
-        size -= 1;
-        return aluno;
-    }
-    
-    public Aluno removeLast() {
-        
-        if (isEmpty()) return null;
-        
-        Aluno aluno = this.tail.aluno;
-        
-        if (this.head.next == null) {
-            this.head = null;
-            this.tail = null;
-        } else {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-        }           
-        
-        size -= 1;
-        return aluno;
-    }
-    
-    
-    public void addR(int index, Aluno aluno) {
-        if (index < 0 || index >= size)
-            throw new IndexOutOfBoundsException();
-        
-        if (index == 0)
-            this.addFirst(aluno);
-        else if (index == size - 1)
-            this.addLast(aluno);
-        else
-            addR(this.head, index, aluno, 0);
-    }
-    
-    private void addR(Node node, int index, Aluno aluno, int i) {
-            // hora de adicionar.
-            if (i == (index - 1)) {
-                Node newNode = new Node(aluno);
-                newNode.next = node.next;
-                node.next = newNode;
-                newNode.next.prev = newNode;
-                newNode.prev = node;
-                this.size += 1;
-            } else {
-                addR(node.next, index, aluno, i+1);
-            }
-    }
 
-    public void add(int index, Aluno aluno) {
-        if (index < 0 || index >= size)
+    // adiciona um valor na posição passada como parâmetro
+    public void add(int index, int valor) {
+        if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
         
-        Node newNode = new Node(aluno);
+        Node newNode = new Node(valor);
         
         if (index == 0) {
-            this.addFirst(aluno);
+            this.addFirst(valor);
         
-        } else if (index == size - 1) {
-            this.addLast(aluno);
+        } else if (index == size) {
+            this.addLast(valor);
         
         } else {
             Node aux = this.head;
@@ -146,11 +70,22 @@ public class LinkedList {
             
             size += 1;
         }
-            
     }
-    
-    public Aluno get(int index) {
-        if (index < 0 || index >= size)
+
+    public int getFirst() {
+        if (isEmpty()) throw new NoSuchElementException();
+        return this.head.value;
+    }
+
+    public int getLast() {
+        if (isEmpty()) throw new NoSuchElementException();
+        return this.tail.value;
+    }
+
+    // retorna o elemento na posição  passada como parâmetro
+    // deve lançar IndexOutOfBoundsException se o índice não for válido.
+    public int get(int index) {
+         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
         
         Node aux = this.head;
@@ -158,24 +93,49 @@ public class LinkedList {
         for (int i = 0; i < index; i++)
             aux = aux.next;
         
-        return aux.aluno;
+        return aux.value;
     }
-    
-    public int indexOf(Aluno aluno) {
-        Node aux = this.head;
-        int index = 0;
-        while (aux != null) { 
-            if(aux.aluno.equals(aluno))
-                return index;
-            aux = aux.next;
-            index += 1;
+
+    // deve lançar exceção caso a fila esteja vazia.
+    public int removeFirst() {
+        if (isEmpty()) throw new NoSuchElementException();
+        
+        int v = this.head.value;
+        
+        if (this.head.next == null) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.prev = null;
         }
         
-        return -1;
+        size -= 1;
+        return v;
     }
-    
-    public Aluno remove(int index) {
-        if (index < 0 || index >= size)
+
+    // deve lançar exceção caso a fila esteja vazia.
+    public int removeLast() {
+        if (isEmpty()) throw new NoSuchElementException();
+        
+        int v = this.tail.value;
+        
+        if (this.head.next == null) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        }           
+        
+        size -= 1;
+        return v;
+    }
+
+    // remove o valor no índice passado como parâmetro. retorna o valor removido.
+    // lançar exceção se o índice não for válido.
+    public int remove(int index) {
+         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
         
         if (index == 0) return removeFirst();
@@ -188,14 +148,15 @@ public class LinkedList {
         aux.prev.next = aux.next;
         aux.next.prev = aux.prev;
         size -= 1;
-        return aux.aluno;
+        return aux.value;
     }
-    
-    public boolean remove(Aluno aluno) {
-        
+
+    // remove a primeira ocorrência do elemento cujo valor foi passado como parâmetro.
+    // se não encontrar, não faça nada. true se remover, false se não remover.
+    public boolean removeByValue(int value) {
         Node aux = this.head;
         for (int i = 0; i < this.size; i++) {
-            if (aux.aluno.equals(aluno)) {
+            if (aux.value == value) {
                 if (i == 0) removeFirst();
                 else if (i == size - 1) removeLast();
                 else {
@@ -211,38 +172,68 @@ public class LinkedList {
         
         return false;
     }
+
+    // retorna a posição da primeira ocorrência do valor passado como parâmetro.
+    public int indexOf(int value) {
+        Node aux = this.head;
+        int index = 0;
+        while (aux != null) { 
+            if(aux.value == value)
+                return index;
+            aux = aux.next;
+            index += 1;
+        }
+        
+        return -1;
+    }
+
+    public boolean contain(int v) {
+        return indexOf(v) != -1;
+    }
+   
+    // Deve retornar a posição da última ocorrência do elemento passado como parâmetro. 
+    public int lastIndexOf(int valor) {
+        if (isEmpty()) return -1;
+        
+        int last = -1;
+        Node aux = this.head;
+        int i = -1;
+        while (aux != null) {
+            i += 1;
+            if (aux.value == valor)
+                last = i;
+            aux = aux.next;
+        }
+
+        return last;
+    }
     
+    // deve retornar uma string representando a lista. 
     public String toString() {
+        if (isEmpty()) return "";
+
         Node aux = this.head;
         String out = "";
         while (aux != null) {
-            out += aux.aluno.getNome() + " ";
+            out += aux.value + ", ";
             aux = aux.next;
         }
-        return out;
-            
-    }
-    
-    public boolean contains(Aluno aluno) {
-        return indexOf(aluno) != -1;
+        return out.substring(0, out.length() - 2);
     }
     
     public int size() {
         return this.size;
     }
-
 }
 
 class Node {
-    
-    Aluno aluno;
-    Node next;
+
+    int value;
     Node prev;
-    
-    public Node(Aluno aluno) {
-        this.aluno = aluno;
-        this.prev = null;
-        this.next = null;
+    Node next;
+
+    Node(int v) {
+        this.value = v;
     }
 
 }
