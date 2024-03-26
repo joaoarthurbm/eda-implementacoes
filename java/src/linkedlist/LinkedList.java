@@ -67,6 +67,8 @@ public class LinkedList {
             
             newNode.next = aux.next;
             aux.next = newNode;
+            newNode.prev = aux;
+            newNode.next.prev = newNode;
             
             size += 1;
         }
