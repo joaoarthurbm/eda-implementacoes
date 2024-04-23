@@ -35,7 +35,7 @@ public class Heap {
     }
 
     public int parent(int i) {
-        return (i-1)/2;
+        return Math.floorDiv(i-1, 2);
     }
 
     public void add(int n) {
