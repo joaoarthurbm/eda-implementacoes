@@ -10,39 +10,41 @@ public class MergeSort implements SortingAlgorithm {
 			mergeSort(v, left, middle);
 			mergeSort(v, middle + 1, right);
 	
-			merge(v, left, middle, right);
+			merge(v, left, right);
 		}
 		
 	}
-
-	public void merge(int[] v, int left, int middle, int right) {
+	
+	public void merge(int[] v, int left, int right) {
 		
 		// transfere os elementos entre left e right para o array auxiliar.
-		int[] helper = new int[v.length];
-		for (int i = left; i <= right; i++) {
-			helper[i] = v[i];
+		int rightHelper = right - left;
+		int[] helper = new int[rightHelper + 1];
+		for (int i = 0; i <= rightHelper; i++) {
+			helper[i] = v[left + i];
 		}
 		
-		
-		int i = left;
-		int j = middle + 1;
+		int middleHelper = rightHelper / 2;
+
+		int i = 0;
+		int j = middleHelper + 1;
 		int k = left;
 		
-		while (i <= middle && j <= right) {
+		while (i <= middleHelper && j <= rightHelper) {
 			
-			if (helper[i] < helper[j]) {
+			if (helper[i] <= helper[j]) {
 				v[k] = helper[i];
 				i++;
 			} else {
 				v[k] = helper[j];
 				j++;
 			}
-			k++;	
+			k++;
 			
 		}
 		
 		// se a metade inicial não foi toda consumida, faz o append.
-		while (i <= middle) {
+		while (i <= middleHelper) {
 			v[k] = helper[i];
 			i++;
 			k++;
@@ -60,3 +62,4 @@ public class MergeSort implements SortingAlgorithm {
 	}
 
 }
+
