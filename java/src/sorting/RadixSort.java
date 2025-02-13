@@ -3,20 +3,20 @@ package sorting;
 public class RadixSort {
 
     public int[] radixSort(int[] seq) {
-        int[] seqOrdenada = new int[seq.length];
-        int maiorNum = buscaMaior(seq);
-        int qtdeDigitos = ("" + maiorNum).length(); 
+        int[] sortedSeq = new int[seq.length];
+        int maxNum = getMax(seq);
+        int qtyDigits = ("" + maxNum).length(); 
 
 
-        for (int nthDigit = 1; nthDigit <= qtdeDigitos; nthDigit++) {
-            seqOrdenada = sort(seq, nthDigit);  // aqui o counting sort é usado para ordenar a sequência pelo i-esimo dígito
+        for (int nthDigit = 1; nthDigit <= qtyDigits; nthDigit++) {
+            sortedSeq = sort(seq, nthDigit);  // aqui o counting sort é usado para ordenar a sequência pelo i-esimo dígito
         }
 
-        return seqOrdenada;
+        return sortedSeq;
     }
 
     private int[] sort(int[] seq, int nthDigit) {
-        int[] seqOrdenada = new int[seq.length];
+        int[] sortedSeq = new int[seq.length];
         int[] freq = new int[10];  // tamanho do array passa a ser o número de dígitos possíveis
 
         // frequência
@@ -37,20 +37,20 @@ public class RadixSort {
             digit = (int) (seq[i] % Math.pow(10, nthDigit));
             digit = (int) (digit / Math.pow(10, nthDigit - 1));
 
-            seqOrdenada[freq[digit] - 1] = seq[i];
+            sortedSeq[freq[digit] - 1] = seq[i];
             freq[digit]--;
         }
 
-        return seqOrdenada;
+        return sortedSeq;
     }
 
-    private int buscaMaior(int[] seq) {
-        int maior = seq[0];
+    private int getMax(int[] seq) {
+        int max = seq[0];
         for (int num: seq) {
-            if (num > maior) {
-                maior = num;
+            if (num > max) {
+                max = num;
             }
         }
-        return maior;
+        return max;
     }
 }
