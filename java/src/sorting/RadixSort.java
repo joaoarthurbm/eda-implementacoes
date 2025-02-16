@@ -2,17 +2,13 @@ package sorting;
 
 public class RadixSort {
 
-    public int[] radixSort(int[] seq) {
-        int[] sortedSeq = new int[seq.length];
+    public radixSort(int[] seq) {
         int maxNum = getMax(seq);
         int qtyDigits = ("" + maxNum).length(); 
 
-
         for (int nthDigit = 1; nthDigit <= qtyDigits; nthDigit++) {
-            sortedSeq = sort(seq, nthDigit);  // aqui o counting sort é usado para ordenar a sequência pelo i-esimo dígito
+            sort(seq, nthDigit);  // aqui o counting sort é usado para ordenar a sequência pelo i-esimo dígito
         }
-
-        return sortedSeq;
     }
 
     private int[] sort(int[] seq, int nthDigit) {
@@ -41,7 +37,10 @@ public class RadixSort {
             freq[digit]--;
         }
 
-        return sortedSeq;
+        // copia os elementos ordenados pelo i-esimo digito para sequencia original a fim de mantê-la atualizada
+        for (int i = 0; i < seq.length; i++){
+            seq[i] = sortedSeq[i];
+        }
     }
 
     private int getMax(int[] seq) {
