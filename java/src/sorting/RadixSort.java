@@ -2,7 +2,7 @@ package sorting;
 
 public class RadixSort {
 
-    public radixSort(int[] seq) {
+    public void radixSort(int[] seq) {
         int maxNum = getMax(seq);
         int qtyDigits = ("" + maxNum).length(); 
 
@@ -13,7 +13,7 @@ public class RadixSort {
 
     private int[] sort(int[] seq, int nthDigit) {
         int[] sortedSeq = new int[seq.length];
-        int[] freq = new int[10];  // tamanho do array passa a ser o número de dígitos possíveis
+        int[] freq = new int[10];  // o tamanho do array passa a ser o número de dígitos possíveis
 
         // frequência
         int digit;
@@ -38,7 +38,7 @@ public class RadixSort {
         }
 
         // copia os elementos ordenados pelo i-esimo digito para sequencia original a fim de mantê-la atualizada
-        for (int i = 0; i < seq.length; i++){
+        for (int i = 0; i < seq.length; i++) {
             seq[i] = sortedSeq[i];
         }
     }
