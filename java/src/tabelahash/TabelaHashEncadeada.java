@@ -116,6 +116,11 @@ public class TabelaHashEncadeada {
     public Aluno remove(int chave) {
         int hash = hash(chave);
         ArrayList<Aluno> alunos = this.tabela[hash];
+
+        // verifica se é null antes de iterar
+        if(alunos == null){
+            return null;
+        }
         
         Iterator<Aluno> it = alunos.iterator();
         Aluno atual = null;
