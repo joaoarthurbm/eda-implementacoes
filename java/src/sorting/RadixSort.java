@@ -11,7 +11,7 @@ public class RadixSort {
         }
     }
 
-    private int[] sort(int[] seq, int nthDigit) {
+    private void sort(int[] seq, int nthDigit) {
         int[] sortedSeq = new int[seq.length];
         int[] freq = new int[10];  // o tamanho do array passa a ser o número de dígitos possíveis
 
