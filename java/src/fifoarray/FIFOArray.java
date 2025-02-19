@@ -19,27 +19,13 @@ public class FIFOArray {
     }
 
     public boolean isFull() {
-        return this.size() == this.fila.length;
+        return this.size == this.fila.length;
     }
     
     public void addLast(String element) {
-        // toda adição deve aumentar o número de elementos, exceto
-        // se já estiver cheio.
-        if (!isFull())
-            this.size += 1;
-    
-        // na primeira adição, ambos vão para o índice 0.
-        if (isEmpty())
-            this.head = 0;
-        
-        // se já tiver cheio, precisamos andar com head para liberar o espaço;
-        // e não acrescentamos em size porque não houve aumento de elementos.
-        if (isFull())
-            this.head += 1 % this.fila.length;
-        
-        // incrementa tail e adiciona o novo elemento
-        this.tail = (this.tail + 1) % this.fila.length;
-        this.fila[tail] = element;
+        if (isFull()) throw new RuntimeException("fila cheia");
+        this.fila[(this.tail + 1) % this.fila.length] = element;
+        this.size += 1;
     }
     
     public String getFirst() {
