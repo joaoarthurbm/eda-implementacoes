@@ -24,7 +24,13 @@ public class FIFOArray {
     
     public void addLast(String element) {
         if (isFull()) throw new RuntimeException("fila cheia");
-        this.fila[(this.tail + 1) % this.fila.length] = element;
+        
+        if (isEmpty()) {
+            this.head = 0;
+        }
+
+        this.tail = (this.tail + 1) % this.fila.length;
+        this.fila[this.tail] = element;
         this.size += 1;
     }
     
