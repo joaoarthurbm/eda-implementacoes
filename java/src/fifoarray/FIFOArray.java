@@ -19,7 +19,7 @@ public class FIFOArray {
     }
 
     public boolean isFull() {
-        return (this.tail + 1) % this.fila.length == this.head;
+        return this.size() == this.fila.length;
     }
     
     public void addLast(String element) {
