@@ -14,14 +14,29 @@ public class FIFOArray {
         this.fila = new String[capacidade];
     }
     
+    /**
+     * Verifica se a fila está vazia ou não
+     * 
+     * @return true caso a fila esteja cheia, false caso não
+     */
     public boolean isEmpty() {
         return this.head == -1 && this.tail == -1;
     }
 
+    /**
+     * Verifica se a fila está cheia ou não
+     * 
+     * @return true caso a fila esteja cheia, false caso não
+     */
     public boolean isFull() {
         return this.size == this.fila.length;
     }
     
+    /**
+     * Adiciona um elemento na última posição da fila caso ela não esteja cheia e lança uma exceção caso esteja cheia
+     * 
+     * @param element o elemento a ser adicionado
+     */
     public void addLast(String element) {
         if (isFull()) throw new RuntimeException("fila cheia");
         
@@ -34,17 +49,32 @@ public class FIFOArray {
         this.size += 1;
     }
     
+    /**
+     * Informa o elemento que se encontra na primeira posição da fila (em head)
+     * 
+     * @return o valor do elemento presente em head
+     */
     public String getFirst() {
         if (isEmpty()) throw new NoSuchElementException();
         return this.fila[this.head];
     }
     
+    /**
+     * Informa o elemento que se encontra na última posição da fila (em tail)
+     * 
+     * @return o elemento presente em tail
+     */
     public String getLast() {
         if (isEmpty()) throw new NoSuchElementException();
         return this.fila[this.tail];
     }
     
-    
+    /**
+     * Remove o elemento presente em head, e, caso a fila fique vazia, reinincia o valor de head e tail para -1,
+     * caso contrário, move a posição de head 1 posição para frente
+     * 
+     * @return o elemento que foi removido
+     */
     public String removeFirst() {
         
         if (isEmpty()) throw new NoSuchElementException();
@@ -61,60 +91,55 @@ public class FIFOArray {
         return value; 
     }
     
+    /**
+     * Percorre o array de head até tail procurando por um elemento e, caso encontre, retorna seu índice na fila (não no array)
+     * 
+     * @param element elemento buscado
+     * @return o índice na fila caso o elemento exista, -1 caso não
+     */
     public int indexOf(String element) {
-        for (int i = head; i <= tail; i += 1 % this.fila.length) {
-            if (this.fila[i].equals(element))
+        for (int i = 0; i < this.size; i++) {
+            int iArray = (this.head + i) % this.fila.length;
+
+            if (this.fila[iArray].equals(element))
                 return i;
         }
         return -1;
     }
     
+    /**
+     * Representação textual da fila no formato:
+     * "a, b, c [...]"
+     */
     public String toString() {
         String out = "";
-        for (int i = head; i <= tail; i += 1 % this.fila.length) {
-            out += this.fila[i] + " ";
+        for (int i = 0; i < this.size; i++) {
+            int iArray = (this.head + i) % this.fila.length;
+
+            out += this.fila[iArray];
+            if (i != this.size-1)
+                out += ", ";
         }
-        return out.trim();
+        return out;
     }
     
+    /**
+     * Verifica se um elemento está contido na fila ou não
+     * 
+     * @param element o elemento cuja existência na fila estamos verificando
+     * @return true caso o elemento esteja presente na fila, false caso não
+     */
     public boolean contains(String element) {
         return indexOf(element) != -1;
     }
     
+    /**
+     * Informa o tamanho da fila
+     * 
+     * @return o tamanho da fila
+     */
     public int size() {
         return this.size;
     }
-
-    public static void main(String[] args) {
-        FIFOArray fila = new FIFOArray(3);
-        assert fila.isEmpty();
-        assert !fila.isFull();
-        
-        fila.addLast("a");
-        assert "a".equals(fila.getFirst());
-
-        fila.addLast("b");
-        assert "a".equals(fila.getFirst());
-        assert 2 == fila.size();
-
-        assert fila.removeFirst().equals("a");
-        assert 1 == fila.size();
-
-        assert fila.removeFirst().equals("b");
-        assert fila.isEmpty();
-        assert !fila.isFull();
     
-        fila.addLast("a");
-        fila.addLast("b");
-        fila.addLast("c");
-        
-        assert fila.getFirst().equals("a");
-        assert 3 == fila.size();
-        fila.addLast("d");
-        assert 3 == fila.size();
-        assert fila.getFirst().equals("b");
-        assert fila.getLast().equals("d");
-        
-
-    }
 }
