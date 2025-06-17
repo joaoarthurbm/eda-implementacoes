@@ -20,9 +20,8 @@ public class MergeSort implements SortingAlgorithm {
 		// transfere os elementos entre left e right para o array auxiliar.
 		int rightHelper = right - left;
 		int[] helper = new int[rightHelper + 1];
-		for (int i = 0; i <= rightHelper; i++) {
+		for (int i = 0; i <= rightHelper; i++)
 			helper[i] = v[left + i];
-		}
 		
 		int middleHelper = rightHelper / 2;
 
@@ -32,24 +31,16 @@ public class MergeSort implements SortingAlgorithm {
 		
 		while (i <= middleHelper && j <= rightHelper) {
 			
-			if (helper[i] <= helper[j]) {
-				v[k] = helper[i];
-				i++;
-			} else {
-				v[k] = helper[j];
-				j++;
-			}
-			k++;
-			
+			if (helper[i] <= helper[j])
+			  v[k++] = helper[i++];
+			else
+				v[k++] = helper[j++];
 		}
 		
 		// se a metade inicial não foi toda consumida, faz o append.
-		while (i <= middleHelper) {
-			v[k] = helper[i];
-			i++;
-			k++;
-		}
-
+		while (i <= middleHelper)
+			v[k++] = helper[i++];
+		
 		// Não precisamos nos preocupar se a metade final foi
 		// toda consumida, já que, se esse foi o caso, ela já está
 		// no array final.
