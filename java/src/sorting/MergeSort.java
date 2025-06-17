@@ -32,7 +32,7 @@ public class MergeSort implements SortingAlgorithm {
 		while (i <= middleHelper && j <= rightHelper) {
 			
 			if (helper[i] <= helper[j])
-			  v[k++] = helper[i++];
+				v[k++] = helper[i++];
 			else
 				v[k++] = helper[j++];
 		}
@@ -44,7 +44,6 @@ public class MergeSort implements SortingAlgorithm {
 		// Não precisamos nos preocupar se a metade final foi
 		// toda consumida, já que, se esse foi o caso, ela já está
 		// no array final.
-
 	}
 
 	@Override
