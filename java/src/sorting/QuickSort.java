@@ -28,16 +28,12 @@ public class QuickSort implements SortingAlgorithm {
                 j--;
 
              if (i < j) {
-                int aux = v[i];
-                v[i] = v[j];
-                v[j] = aux;
+				swap(v, i, j);
               }
 
         }
-
-        int aux = v[left];
-        v[left] = v[j];
-        v[j] = aux;
+		
+		swap(v, left, j);
         return j;
     }
 
@@ -46,9 +42,7 @@ public class QuickSort implements SortingAlgorithm {
         int indexPivot = this.pivotPicker.pickPivotIndex(v, left, right);
     
         // swap first and pivot
-        int aux = v[left];
-        v[left] = v[indexPivot];
-        v[indexPivot] = aux;
+		swap(v, left, indexPivot);
 	            
 	int pivot = v[left];
 	int i = left;
@@ -56,17 +50,19 @@ public class QuickSort implements SortingAlgorithm {
 	for (int j = i + 1; j <= right; j++) {
 	    if (v[j] <= pivot) {
 		i+=1;
-		aux = v[i];
-		v[i] = v[j];
-		v[j] = aux;			
+		swap(v, i, j);
 	    }
 	}
-		
-	aux = v[left];
-	v[left] = v[i];
-	v[i] = aux;
+	
+	swap(v, left, i);
 	
 	return i;
 		
     }
+
+	private void swap(int[] v, int i, int j) {
+		int aux = v[i];
+		v[i] = v[j];
+		v[j] = aux;
+	}
 }
