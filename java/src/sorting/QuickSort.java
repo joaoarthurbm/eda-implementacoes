@@ -28,12 +28,12 @@ public class QuickSort implements SortingAlgorithm {
                 j--;
 
              if (i < j) {
-				swap(v, i, j);
+		swap(v, i, j);
               }
 
         }
 		
-		swap(v, left, j);
+	swap(v, left, j);
         return j;
     }
 
