@@ -11,7 +11,7 @@ public class QuickSort implements SortingAlgorithm {
         if (left < right) {
 	    int index_pivot = partition(v, left, right);
 	    quickSort(v, left, index_pivot - 1);
-	    quickSort(v, index_pivot + 1, right);	
+	    quickSort(v, index_pivot + 1, right);
 	}
     }
 
@@ -22,17 +22,14 @@ public class QuickSort implements SortingAlgorithm {
 
         while (i <= j) {
             while (i <= j && v[i] <= pivot)
-                    i++;
+                i++;
             
 	    while (i <= j && v[j] > pivot)
                 j--;
 
-             if (i < j) {
+             if (i < j) 
 		swap(v, i, j);
-              }
-
-        }
-		
+        }	
 	swap(v, left, j);
         return j;
     }
@@ -42,8 +39,8 @@ public class QuickSort implements SortingAlgorithm {
         int indexPivot = this.pivotPicker.pickPivotIndex(v, left, right);
     
         // swap first and pivot
-		swap(v, left, indexPivot);
-	            
+	swap(v, left, indexPivot);
+	
 	int pivot = v[left];
 	int i = left;
 		
