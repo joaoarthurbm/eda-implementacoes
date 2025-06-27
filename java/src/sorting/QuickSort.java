@@ -11,7 +11,7 @@ public class QuickSort implements SortingAlgorithm {
         if (left < right) {
 	    int index_pivot = partition(v, left, right);
 	    quickSort(v, left, index_pivot - 1);
-	    quickSort(v, index_pivot + 1, right);	
+	    quickSort(v, index_pivot + 1, right);
 	}
     }
 
@@ -22,22 +22,15 @@ public class QuickSort implements SortingAlgorithm {
 
         while (i <= j) {
             while (i <= j && v[i] <= pivot)
-                    i++;
+                i++;
             
 	    while (i <= j && v[j] > pivot)
                 j--;
 
-             if (i < j) {
-                int aux = v[i];
-                v[i] = v[j];
-                v[j] = aux;
-              }
-
-        }
-
-        int aux = v[left];
-        v[left] = v[j];
-        v[j] = aux;
+             if (i < j) 
+		swap(v, i, j);
+        }	
+	swap(v, left, j);
         return j;
     }
 
@@ -46,27 +39,27 @@ public class QuickSort implements SortingAlgorithm {
         int indexPivot = this.pivotPicker.pickPivotIndex(v, left, right);
     
         // swap first and pivot
-        int aux = v[left];
-        v[left] = v[indexPivot];
-        v[indexPivot] = aux;
-	            
+	swap(v, left, indexPivot);
+	
 	int pivot = v[left];
 	int i = left;
 		
 	for (int j = i + 1; j <= right; j++) {
 	    if (v[j] <= pivot) {
 		i+=1;
-		aux = v[i];
-		v[i] = v[j];
-		v[j] = aux;			
+		swap(v, i, j);
 	    }
 	}
-		
-	aux = v[left];
-	v[left] = v[i];
-	v[i] = aux;
+	
+	swap(v, left, i);
 	
 	return i;
 		
     }
+
+	private void swap(int[] v, int i, int j) {
+		int aux = v[i];
+		v[i] = v[j];
+		v[j] = aux;
+	}
 }
