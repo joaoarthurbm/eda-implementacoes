@@ -55,10 +55,7 @@ public class LinkedList {
         
         if (index == 0) {
             this.addFirst(valor);
-        
-        } else if (index == size) {
-            this.addLast(valor);
-        
+            
         } else {
             Node aux = this.head;
             
