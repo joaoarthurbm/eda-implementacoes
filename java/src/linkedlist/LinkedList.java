@@ -29,7 +29,7 @@ public class LinkedList {
             this.head = newNode;
         }
         
-        size += 1;
+        this.size += 1;
     }
 
     public void addLast(int valor) {
@@ -70,7 +70,7 @@ public class LinkedList {
             newNode.prev = aux;
             newNode.next.prev = newNode;
             
-            size += 1;
+            this.size += 1;
         }
     }
 
@@ -112,7 +112,7 @@ public class LinkedList {
             this.head.prev = null;
         }
         
-        size -= 1;
+        this.size -= 1;
         return v;
     }
 
@@ -130,7 +130,7 @@ public class LinkedList {
             this.tail.next = null;
         }           
         
-        size -= 1;
+        this.size -= 1;
         return v;
     }
 
@@ -149,7 +149,7 @@ public class LinkedList {
         
         aux.prev.next = aux.next;
         aux.next.prev = aux.prev;
-        size -= 1;
+        this.size -= 1;
         return aux.value;
     }
 
@@ -164,7 +164,7 @@ public class LinkedList {
                 else {
                     aux.prev.next = aux.next;
                     aux.next.prev = aux.prev;
-                    size -= 1;
+                    this.size -= 1;
                 }
                 
                 return true;
