@@ -51,7 +51,7 @@ public class ArrayList {
         this.lista[index] = aluno;
     }
     
-    private void assegureCapacidade(int capacidadePretendida) {
+    public void assegureCapacidade(int capacidadePretendida) {
         
         if (capacidadePretendida > this.lista.length)
             resize(Math.max(this.lista.length * 2, capacidadePretendida));
