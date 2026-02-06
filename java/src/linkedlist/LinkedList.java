@@ -40,7 +40,7 @@ public class LinkedList {
             this.tail = head;
         } else {
             this.tail.next = newNode;
-            newNode.prev = tail;
+            newNode.prev = this.tail;
             this.tail = newNode;
         }
         this.size += 1;
