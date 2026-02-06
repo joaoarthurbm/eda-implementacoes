@@ -33,7 +33,7 @@ public class ArrayList {
     }
     
     public void add(int index, Aluno aluno) {
-        if (index < 0 || index > this.tamanho)
+        if (index < 0 || index >= this.tamanho)
             throw new IndexOutOfBoundsException();
         
         assegureCapacidade(this.tamanho + 1);
@@ -83,7 +83,7 @@ public class ArrayList {
     }
     
     public int indexOf(Aluno aluno) {
-        for (int i = 0; i < tamanho; i++)
+        for (int i = 0; i < this.tamanho; i++)
             if (this.lista[i].equals(aluno))
                 return i;
         return -1;
