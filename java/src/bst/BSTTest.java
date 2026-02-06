@@ -127,4 +127,24 @@ public class BSTTest {
         assertEquals(bst.size(), 1);
 
     }
+    @Test
+    public void testAdicionaDuplicadas() {
+        BST bst = new BST();
+        bst.add(50);
+        bst.add(30);
+        bst.add(80);
+        bst.add(20);
+        bst.add(40);
+        int tamanhoInicial = bst.size();
+        ArrayList<Integer> bfsAntes = bst.bfs();
+
+        assertEquals(5, tamanhoInicial);
+
+        bst.add(50);
+        bst.add(20);
+        bst.add(30);
+
+        assertEquals("O tamanho da árvore não deveria mudar ao adicionar duplicadas", tamanhoInicial, bst.size());
+        assertEquals("A estrutura da árvore não deveria mudar ao adicionar duplicadas", bfsAntes, bst.bfs());
+    }
 }

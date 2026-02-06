@@ -14,41 +14,39 @@ public class BST {
     }
     
     /**
-     * Implementação iterativa da adição de um elemento em uma árvore binária de pequisa.
+     * Implementação iterativa da adição de um elemento em uma árvore binária de pesquisa.
      * @param element o valor a ser adicionado na árvore.
      */
     public void add(int element) {
-        this.size += 1;
-        if (isEmpty())
+        if (isEmpty()) {
             this.root = new Node(element);
-        else {
-            
-            Node aux = this.root;
-            
-            while (aux != null) {
-                
-                if (element < aux.value) {
-                    if (aux.left == null) { 
-                        Node newNode = new Node(element);
-                        aux.left = newNode;
-                        newNode.parent = aux;
-                        return;
-                    }
-                    
-                    aux = aux.left;
-                } else {
-                    if (aux.right == null) { 
-                        Node newNode = new Node(element);
-                        aux.right = newNode;
-                        newNode.parent = aux;
-                        return;
-                    }
-                    
-                    aux = aux.right;
+            this.size = 1;
+            return;
+        }
+
+        Node aux = this.root;
+        while (true) {
+            if (element == aux.value)
+                return;
+
+            if (element < aux.value) {
+                if (aux.left == null) {
+                    aux.left = new Node(element);
+                    aux.left.parent = aux;
+                    this.size++;
+                    return;
                 }
+                aux = aux.left;
+            } else {
+                if (aux.right == null) {
+                    aux.right = new Node(element);
+                    aux.right.parent = aux;
+                    this.size++;
+                    return;
+                }
+                aux = aux.right;
             }
         }
-        
     }
     
     
@@ -143,16 +141,15 @@ public class BST {
      * Implementação recursiva do método de adição.
      * @param element elemento a ser adicionado.
      */
-    public void recursiveAdd(int element) {
-        
-        if (isEmpty())
+    public void recursiveAdd(int element) { 
+        if (isEmpty()) {
             this.root = new Node(element);
-        else {
-            Node aux = this.root;
-            recursiveAdd(aux, element);
+            this.size = 1;
+        } else {
+            if (recursiveAdd(this.root, element)) {
+                this.size++;
+            }
         }
-        this.size += 1;
-        
     }
 
     /**
@@ -160,24 +157,27 @@ public class BST {
      * @param node a raíz da árvore.
      * @param element elemento a ser adicionado.
      */
-    private void recursiveAdd(Node node, int element) {
-        
+    private boolean recursiveAdd(Node node, int element) {
+        if (element == node.value) {
+            return false;
+        }
+
         if (element < node.value) {
             if (node.left == null) {
                 Node newNode = new Node(element);
                 node.left = newNode;
                 newNode.parent = node;
-                return;
+                return true;
             }
-            recursiveAdd(node.left, element);
+            return recursiveAdd(node.left, element);
         } else {
             if (node.right == null) {
                 Node newNode = new Node(element);
                 node.right = newNode;
                 newNode.parent = node;
-                return;
+                return true;
             }
-            recursiveAdd(node.right, element);
+            return recursiveAdd(node.right, element);
         }
         
     }
