@@ -56,7 +56,7 @@ public class LinkedList {
         if (index == 0) {
             this.addFirst(valor);
         
-        } else if (index == size) {
+        } else if (index == this.size) {
             this.addLast(valor);
         
         } else {
