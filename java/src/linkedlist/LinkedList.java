@@ -48,7 +48,7 @@ public class LinkedList {
 
     // adiciona um valor na posição passada como parâmetro
     public void add(int index, int valor) {
-        if (index < 0 || index > size)
+        if (index < 0 || index > this.size)
             throw new IndexOutOfBoundsException();
         
         Node newNode = new Node(valor);
