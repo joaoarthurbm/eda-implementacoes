@@ -172,22 +172,36 @@ public class TabelaHashEnderecamentoAberto {
     private void put(Aluno[] tabela, Integer chave, Aluno valor) {
         int sondagem = 0;
         int hash;
+        int idxPut = -1;
         while (sondagem < tabela.length) {
 
             hash = (hash(chave) + sondagem) % tabela.length;
             Aluno tmpAluno = tabela[hash];
-            if (tmpAluno == null || 
-                    tmpAluno.getMatricula().equals(chave) ||
-                    tmpAluno.equals(APAGADO)) {
-                tabela[hash] = valor;
-                this.chaves.add(chave);
-                this.valores.add(valor);
-                this.size += 1;
-                return;
+
+            if(tmpAluno == null){
+                if(idxPut == -1){
+                    idxPut = hash;
+                }
+                break;
+            }
+            if (tmpAluno.getMatricula().equals(chave)) {
+                idxPut = hash;
+                this.size -= 1;
+                break;
+            }
+            if(idxPut == -1 && tmpAluno.equals(APAGADO)){
+                idxPut = hash;
             }
 
             sondagem += 1;
 
+        }
+
+        if(idxPut != -1){
+            tabela[idxPut] = valor;
+            this.chaves.add(chave);
+            this.valores.add(valor);
+            this.size += 1;
         }
 
     }
