@@ -71,18 +71,17 @@ public class TabelaHashEncadeada {
         
         if (alunos == null) {
             alunos = new ArrayList<Aluno>();
-            alunos.add(valor);
             this.tabela[hash] = alunos;
+        }
 
-        } else {
-            for (int i = 0; i < alunos.size(); i++) {
-                if (alunos.get(i).getMatricula() == chave) {
-                    alunos.set(i, valor);
-                    return;
-                }
+        for (int i = 0; i < alunos.size(); i++) {
+            if (alunos.get(i).getMatricula() == chave) {
+                alunos.set(i, valor);
+                return;
             }
-            alunos.add(valor);
-        }    
+        }
+            
+        alunos.add(valor);
     }
 
     /**
