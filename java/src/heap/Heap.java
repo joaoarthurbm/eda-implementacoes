@@ -27,15 +27,15 @@ public class Heap {
     }
 
     public int left(int i) {
-        return 2*i+1;
+        return 2 * i + 1;
     }
 
     public int right(int i) {
-        return (i+1)*2;
+        return 2 * (i + 1);
     }
 
     public int parent(int i) {
-        return Math.floorDiv(i-1, 2);
+        return (i - 1) / 2;
     }
 
     public void add(int n) {
