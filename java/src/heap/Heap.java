@@ -47,9 +47,7 @@ public class Heap {
         
         int i = tail;
         while (i > 0 && this.heap[parent(i)] < this.heap[i]) {
-            int aux = this.heap[i];
-            this.heap[i] = this.heap[parent(i)];
-            this.heap[parent(i)] = aux;
+            swap(i,parent(i));
             i = parent(i);
         }
     }
