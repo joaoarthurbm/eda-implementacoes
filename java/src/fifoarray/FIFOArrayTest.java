@@ -19,12 +19,18 @@ public class FIFOArrayTest {
         assertFalse(!fila.isEmpty());
         
         fila.addLast("a");
+        assertFalse(fila.isEmpty());
         fila.addLast("b");
         assertFalse(fila.isEmpty());
+        fila.addLast("c");
+        assertFalse(fila.isEmpty());
+
         
         fila.removeFirst();
         fila.removeFirst();
+        fila.removeFirst();
         assertTrue(fila.isEmpty());
+
     }
 
     @Test
@@ -32,14 +38,22 @@ public class FIFOArrayTest {
         fila.addLast("a");
         fila.addLast("b");
         fila.addLast("c");
+
         assertTrue(fila.isFull());
         assertEquals(3, fila.size());
+        fila.removeFirst();
+        assertFalse(fila.isFull());
 
+        fila.removeFirst();
+        assertFalse(fila.isFull());
         fila.removeFirst();
         assertFalse(fila.isFull());
 
         fila.addLast(null);
+        fila.addLast(null);
+        fila.addLast(null);
         assertTrue(fila.isFull());
+
     }
 
     @Test
@@ -56,6 +70,9 @@ public class FIFOArrayTest {
         fila.addLast("c");
         assertTrue(fila.isFull());
 
+        fila.removeFirst();
+        fila.addLast("a");
+        assertEquals(fila.getFirst(),"b");
         fila.removeFirst();
         fila.removeFirst();
         fila.removeFirst();
