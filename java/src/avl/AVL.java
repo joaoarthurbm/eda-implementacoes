@@ -180,6 +180,11 @@ public class AVL {
         newRoot.parent = node.parent;
 
         node.left = newRoot.right;
+
+        if (newRoot.right != null) {
+            newRoot.right.parent = node;
+        }
+
         newRoot.right = node;
 
         node.parent = newRoot;
@@ -203,6 +208,11 @@ public class AVL {
         newRoot.parent = node.parent;
 
         node.right = newRoot.left;
+
+        if (newRoot.left != null) {
+            newRoot.left.parent = node;
+        }
+
         newRoot.left = node;
 
         node.parent = newRoot;
